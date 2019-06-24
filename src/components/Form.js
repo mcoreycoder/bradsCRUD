@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function Form() {
 
@@ -10,6 +10,7 @@ function Form() {
 
    const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log("I am batMan handleSubmit")
     const data = JSON.stringify({name,breed,email})
     await fetch("http://localhost:4000" , {
         method: "POST",
@@ -18,6 +19,8 @@ function Form() {
             'Content-Type': 'application/json',
         }
     })
+    // added line below to get redirect working
+  window.location.href = "/cats"
    }
    
 
@@ -30,7 +33,7 @@ function Form() {
       <Link to="/">Home</Link>
       <br />
       <p>Form</p>
-      <form onSubmit={e => handleSubmit(e,)}>
+      <form onSubmit={e => handleSubmit(e)}>
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Name</label>
           <input
